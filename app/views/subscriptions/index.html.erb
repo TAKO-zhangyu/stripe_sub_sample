@@ -1,0 +1,31 @@
+<h1>クレジットカード登録</h1>
+<section>
+  <%# 商品内容を表示 %>
+  <p>サービス名: <%= @product.name %></p>
+  <p>月額料金: <%= @price.unit_amount %> 円</p>
+  <%# フォームに client_secret を埋め込む %>
+  <form id="subscription-form" data-secret="<%= @intent.client_secret %>">
+    <div class="form-row">
+      <label for="cardholder-name">
+        カード所有者名
+      </label>
+      <input id="cardholder-name" type="text">
+    </div>
+
+    <div class="form-row">
+      <label for="card-element">
+        カード情報
+      </label>
+      <div id="card-element">
+        <%# jsでここにフォームが生成される %>
+      </div>
+
+      <div id="card-errors" role="alert">
+        <%# jsでエラーを表示 %>
+      </div>
+    </div>
+
+    <button id="subscription-button" disabled>サービスに申し込む</button>
+  </form>
+</section>
+<%= javascript_pack_tag 'subscription' %>
